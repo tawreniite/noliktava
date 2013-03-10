@@ -9,112 +9,112 @@ using Noliktava2.Models;
 
 namespace Noliktava2.Controllers
 {
-    public class DarbiniekiController : Controller
+    public class VendorController : Controller
     {
         private NoliktavaDataContext db = new NoliktavaDataContext();
 
         //
-        // GET: /Darbinieki/
+        // GET: /Vendor/
 
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Position);
-            return View(employees.ToList());
+            var vendors = db.Vendors.Include(v => v.Responsible);
+            return View(vendors.ToList());
         }
 
         //
-        // GET: /Darbinieki/Details/5
+        // GET: /Vendor/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            if (employeemodel == null)
+            VendorModel vendormodel = db.Vendors.Find(id);
+            if (vendormodel == null)
             {
                 return HttpNotFound();
             }
-            return View(employeemodel);
+            return View(vendormodel);
         }
 
         //
-        // GET: /Darbinieki/Create
+        // GET: /Vendor/Create
 
         public ActionResult Create()
         {
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "UserName");
             return View();
         }
 
         //
-        // POST: /Darbinieki/Create
+        // POST: /Vendor/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(EmployeeModel employeemodel)
+        public ActionResult Create(VendorModel vendormodel)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employeemodel);
+                db.Vendors.Add(vendormodel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code", employeemodel.PositionId);
-            return View(employeemodel);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "UserName", vendormodel.EmployeeId);
+            return View(vendormodel);
         }
 
         //
-        // GET: /Darbinieki/Edit/5
+        // GET: /Vendor/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            if (employeemodel == null)
+            VendorModel vendormodel = db.Vendors.Find(id);
+            if (vendormodel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code", employeemodel.PositionId);
-            return View(employeemodel);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "UserName", vendormodel.EmployeeId);
+            return View(vendormodel);
         }
 
         //
-        // POST: /Darbinieki/Edit/5
+        // POST: /Vendor/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EmployeeModel employeemodel)
+        public ActionResult Edit(VendorModel vendormodel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employeemodel).State = EntityState.Modified;
+                db.Entry(vendormodel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code", employeemodel.PositionId);
-            return View(employeemodel);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "UserName", vendormodel.EmployeeId);
+            return View(vendormodel);
         }
 
         //
-        // GET: /Darbinieki/Delete/5
+        // GET: /Vendor/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            if (employeemodel == null)
+            VendorModel vendormodel = db.Vendors.Find(id);
+            if (vendormodel == null)
             {
                 return HttpNotFound();
             }
-            return View(employeemodel);
+            return View(vendormodel);
         }
 
         //
-        // POST: /Darbinieki/Delete/5
+        // POST: /Vendor/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            db.Employees.Remove(employeemodel);
+            VendorModel vendormodel = db.Vendors.Find(id);
+            db.Vendors.Remove(vendormodel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -6,115 +6,117 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Noliktava2.Models;
+using System.Threading;
+using System.Globalization;
 
 namespace Noliktava2.Controllers
 {
-    public class DarbiniekiController : Controller
+    public class ItemsController : Controller
     {
+        public ItemsController()
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+        }
+
         private NoliktavaDataContext db = new NoliktavaDataContext();
 
         //
-        // GET: /Darbinieki/
+        // GET: /Items/
 
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Position);
-            return View(employees.ToList());
+            return View(db.Items.ToList());
         }
 
         //
-        // GET: /Darbinieki/Details/5
+        // GET: /Items/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            if (employeemodel == null)
+            ItemModel itemmodel = db.Items.Find(id);
+            if (itemmodel == null)
             {
                 return HttpNotFound();
             }
-            return View(employeemodel);
+            return View(itemmodel);
         }
 
         //
-        // GET: /Darbinieki/Create
+        // GET: /Items/Create
 
         public ActionResult Create()
         {
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code");
             return View();
         }
 
         //
-        // POST: /Darbinieki/Create
+        // POST: /Items/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(EmployeeModel employeemodel)
+        public ActionResult Create(ItemModel itemmodel)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employeemodel);
+                db.Items.Add(itemmodel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code", employeemodel.PositionId);
-            return View(employeemodel);
+            return View(itemmodel);
         }
 
         //
-        // GET: /Darbinieki/Edit/5
+        // GET: /Items/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            if (employeemodel == null)
+            ItemModel itemmodel = db.Items.Find(id);
+            if (itemmodel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code", employeemodel.PositionId);
-            return View(employeemodel);
+            return View(itemmodel);
         }
 
         //
-        // POST: /Darbinieki/Edit/5
+        // POST: /Items/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EmployeeModel employeemodel)
+        public ActionResult Edit(ItemModel itemmodel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employeemodel).State = EntityState.Modified;
+                db.Entry(itemmodel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PositionId = new SelectList(db.Positions, "Id", "Code", employeemodel.PositionId);
-            return View(employeemodel);
+            return View(itemmodel);
         }
 
         //
-        // GET: /Darbinieki/Delete/5
+        // GET: /Items/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            if (employeemodel == null)
+            ItemModel itemmodel = db.Items.Find(id);
+            if (itemmodel == null)
             {
                 return HttpNotFound();
             }
-            return View(employeemodel);
+            return View(itemmodel);
         }
 
         //
-        // POST: /Darbinieki/Delete/5
+        // POST: /Items/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EmployeeModel employeemodel = db.Employees.Find(id);
-            db.Employees.Remove(employeemodel);
+            ItemModel itemmodel = db.Items.Find(id);
+            db.Items.Remove(itemmodel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,36 @@
+﻿@model Noliktava2.Models.PurchaseModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PurchaseModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Vendor.TelephoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Vendor.TelephoneNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsCompleted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsCompleted)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

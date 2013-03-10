@@ -11,6 +11,13 @@
     <legend>EmployeeModel</legend>
 
     <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
          @Html.DisplayNameFor(model => model.Position.Code)
     </div>
     <div class="display-field">
@@ -53,6 +60,7 @@
     </div>
 </fieldset>
 @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Delete" /> |
         @Html.ActionLink("Back to List", "Index")

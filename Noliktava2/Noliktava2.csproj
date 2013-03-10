@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -162,8 +164,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DarbiniekiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -309,6 +316,31 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Vendor\Index.cshtml" />
+    <Content Include="Views\Vendor\Details.cshtml" />
+    <Content Include="Views\Vendor\Create.cshtml" />
+    <Content Include="Views\Vendor\Edit.cshtml" />
+    <Content Include="Views\Vendor\Delete.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\Details.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\Sales\Details.cshtml" />
+    <Content Include="Views\Sales\Create.cshtml" />
+    <Content Include="Views\Sales\Edit.cshtml" />
+    <Content Include="Views\Sales\Delete.cshtml" />
+    <Content Include="Views\Purchase\Index.cshtml" />
+    <Content Include="Views\Purchase\Details.cshtml" />
+    <Content Include="Views\Purchase\Create.cshtml" />
+    <Content Include="Views\Purchase\Edit.cshtml" />
+    <Content Include="Views\Purchase\Delete.cshtml" />
     <Content Include="Views\Darbinieki\Index.cshtml" />
     <Content Include="Views\Darbinieki\Details.cshtml" />
     <Content Include="Views\Darbinieki\Create.cshtml" />
@@ -363,6 +395,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
