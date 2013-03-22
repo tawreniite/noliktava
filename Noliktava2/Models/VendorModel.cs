@@ -18,17 +18,22 @@ namespace Noliktava2.Models
         public int EmployeeId { get; set; }
 
         [ForeignKey("EmployeeId")]
+        [Display(Name = "Atbildīgais darbinieks")]
         public EmployeeModel Responsible { get; set; }
 
         [StringLength(20)]
+        [Required(ErrorMessage = "Telefona numurs ir obligāti jāaizpilda!")]
+        [Display(Name = "Telefona numurs")]
         public string TelephoneNumber { get; set; }
 
         [StringLength(30)]
-        [Required]
+        [Required(ErrorMessage = "Nosaukums ir obligāti jāaizpilda!")]
+        [Display(Name = "Nosaukums")]
         public string Name { get; set; }
 
         [StringLength(50)]
-        [Required]
+        [Required(ErrorMessage = "Adrese ir obligāti jāaizpilda!")]
+        [Display(Name = "Adrese")]
         public string Address { get; set; }
 
     }

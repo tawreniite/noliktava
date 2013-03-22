@@ -18,11 +18,14 @@ namespace Noliktava2.Models
         public int VendorId { get; set; }
 
         [ForeignKey("VendorId")]
+        [Display(Name = "Nosaukums")]
         public VendorModel Vendor { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Izpildes datums ir obligāti jāaizpilda!")]
+        [Display(Name = "Izpildes datums")]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Ir izpildīts")]
         public bool IsCompleted { get; set; }
     }
 }

@@ -24,9 +24,11 @@ namespace Noliktava2.Models
         public int ItemId { get; set; }
 
         [ForeignKey("ItemId")]
+        [Display(Name = "Nosaukums")]
         public ItemModel Item { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Daudzums ir obligāti jāaizpilda!")]
+        [Display(Name = "Daudzums")]
         public double Quantity { get; set; }
     }
 }

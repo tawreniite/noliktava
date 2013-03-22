@@ -20,9 +20,11 @@ namespace Noliktava2.Models
         [ForeignKey("ClientId")]
         public ClientModel Client { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Datums ir obligāti jāaizpilda!")]
+        [Display(Name = "Datums")]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Ir izpildīts")]
         public bool IsCompleted { get; set; }
     }
 }

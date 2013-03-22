@@ -15,7 +15,8 @@ namespace Noliktava2.Models
         public int Id { get; set; }
 
         [StringLength(20)]
-        [Required]
+        [Required(ErrorMessage = "Lietotājvārds ir obligāti jāaizpilda!")]
+        [Display(Name="Lietotājvārds")]
         public string UserName { get; set; }
 
         [Required]
@@ -25,19 +26,24 @@ namespace Noliktava2.Models
         public PositionModel Position { get; set; }
 
         [StringLength(20)]
+        [Display(Name = "Telefona numurs")]
         public string TelephoneNumber { get; set; }
 
         [StringLength(30)]
-        [Required]
+        [Required(ErrorMessage="Uzvārds ir obligāti jāaizpilda!")]
+        [Display(Name = "Uzvārds")]
         public string LastName { get; set; }
 
         [StringLength(30)]
-        [Required]
+        [Required(ErrorMessage = "Vārds ir obligāti jāaizpilda!")]
+        [Display(Name = "Vārds")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Darba uzsākšanas datums ir obligāti jāaizpilda!")]
+        [Display(Name = "Sākuma datums")]
         public DateTime FromDate { get; set; }
 
+        [Display(Name = "Beigu datums")]
         public DateTime? ToDate { get; set; }
     }
 }

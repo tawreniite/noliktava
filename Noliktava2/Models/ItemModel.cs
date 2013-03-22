@@ -15,10 +15,12 @@ namespace Noliktava2.Models
         public int Id { get; set; }
 
         [StringLength(30)]
-        [Required]
+        [Required(ErrorMessage = "Nosaukums ir obligāti jāaizpilda!")]
+        [Display(Name = "Nosaukums")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Cena ir obligāti jāaizpilda!")]
+        [Display(Name = "Cena")]
         public double Price { get; set; }
     }
 }
